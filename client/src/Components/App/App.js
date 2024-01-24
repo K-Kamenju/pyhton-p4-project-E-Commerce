@@ -35,7 +35,7 @@ function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/profile" element={<UpdateProfile />} /> 
+          <Route path="/profile/profileId" element={<UpdateProfile />} /> 
           <Route path="/post-product" element={<PostProduct />} />
        </Routes>
        <Footer />
