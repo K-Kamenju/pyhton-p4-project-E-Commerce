@@ -7,6 +7,7 @@ import Product from '../../Pages/Product';
 import Cart from '../../Pages/Cart';
 import Login from '../../Pages/Login';
 import About from '../../Pages/About';
+import Categories from '../../Pages/Categories';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path='/categories' element= {<Categories />}/>
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />

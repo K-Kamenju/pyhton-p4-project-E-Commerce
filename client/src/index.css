@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.landing-page {
+  background: linear-gradient(180deg, rgb(160, 201, 218), white 70%); ;
+}
