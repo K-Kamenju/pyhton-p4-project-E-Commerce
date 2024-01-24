@@ -15,7 +15,7 @@ function CoverImage() {
                 Description
             </p>
             <div className="button">
-                <Link to="/categories" className="btn btn-outline-success ">See More Categories<img src={arrow} alt="arrows" /></Link> 
+                <Link to="/categories" className="btn btn-outline-success ">See More Categories     <i class="fa fa-long-arrow-right" aria-hidden="true"></i></Link> 
             </div>
         </div>
     )

@@ -8,6 +8,16 @@
     width: 7vh;
 }
 
+.fa-shopping-cart:hover {
+    scale: 1.2;
+    transition: 900ms ease;
+}
+
+button:hover {
+    scale: 1.2;
+    transition: 900ms ease;
+}
+
 .logo:hover {
     scale: 1.2;
     transition: 900ms ease;
