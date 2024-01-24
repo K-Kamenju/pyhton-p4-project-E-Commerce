@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../Pages/css/Login.css';
 
 function Login({ onLogin }) {
-    const [credentials, setCredentials] = useState({ email: '', password: '' });
+    const [credentials, setCredentials] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ function Login({ onLogin }) {
 
     const handleLoginClick = async () => {
         try {
-            const response = await fetch('/login', {
+            const response = await fetch('http://localhost:5555/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,11 +27,11 @@ function Login({ onLogin }) {
             }
 
             const data = await response.json();
-            localStorage.setItem('token', data.token);
+            localStorage.setItem('token', data.access_token); // Store the JWT token
             onLogin();
             navigate('/');
         } catch (error) {
-            setError('Login failed: Invalid email or password');
+            setError('Login failed: Invalid username or password');
         }
     };
 
@@ -41,7 +41,7 @@ function Login({ onLogin }) {
                 <h1>Login</h1>
                 {error && <p className="text-danger">{error}</p>}
                 <div className="loginsignup-fields">
-                    <input type="email" placeholder='Email Address' name="email" value={credentials.email} onChange={handleChange} />
+                    <input type="text" placeholder='Username or Email' name="username" value={credentials.username} onChange={handleChange} />
                     <input type="password" placeholder='Password' name="password" value={credentials.password} onChange={handleChange} />
                 </div>
                 <button onClick={handleLoginClick}>Continue</button>
