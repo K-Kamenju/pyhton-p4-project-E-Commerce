@@ -1,30 +1,56 @@
 from app import db
-from models import User
-from models import Product
-from models import Order
-from models import Review
-from models import OrderProduct
+from models import User, Category, Clothes, Brand, Size, Color, Review, clothes_sizes, clothes_colors
 
-
-
-def seed_data():
+def seed_db():
     db.drop_all()
     db.create_all()
 
-    user1 = User(username='john_doe')
-    user2 = User(username='jane_doe')
+    # Create users
+    user1 = User(username='alice')
+    user2 = User(username='bob')
 
-    product1 = Product(name='Widget', description='A useful widget', poster=user1)
-    product2 = Product(name='Gadget', description='An interesting gadget', poster=user2)
+    # Create categories
+    category1 = Category(name='T-Shirts')
+    category2 = Category(name='Jeans')
+    category3 = Category(name='Dresses')
 
-    order1 = Order(user=user1)
-    order2 = Order(user=user2)
+    # Create brands
+    brand1 = Brand(name='BrandA')
+    brand2 = Brand(name='BrandB')
 
-    review1 = Review(content='Great widget!', author=user1, products=[product1])
-    review2 = Review(content='Love this gadget.', author=user2, products=[product2])
+    # Create sizes
+    sizeS = Size(name='S')
+    sizeM = Size(name='M')
+    sizeL = Size(name='L')
 
-    order_product1 = OrderProduct(order=order1, product=product1, quantity=2)
-    order_product2 = OrderProduct(order=order2, product=product2, quantity=3)
+    # Create colors
+    colorRed = Color(name='Red')
+    colorBlue = Color(name='Blue')
+    colorGreen = Color(name='Green')
 
-    db.session.add_all([user1, user2, product1, product2, order1, order2, review1, review2, order_product1, order_product2])
+    # Create clothes
+    clothes1 = Clothes(name='Cool T-Shirt', description='A very cool T-Shirt', price=19.99, user=user1, category=category1, brand=brand1)
+    clothes2 = Clothes(name='Blue Jeans', description='Comfortable blue jeans', price=39.99, user=user2, category=category2, brand=brand2)
+    clothes3 = Clothes(name='Summer Dress', description='Perfect for the summer', price=29.99, user=user1, category=category3, brand=brand1)
+
+    # Assign sizes and colors to clothes
+    clothes1.sizes.extend([sizeS, sizeM])
+    clothes1.colors.extend([colorRed, colorGreen])
+    clothes2.sizes.extend([sizeM, sizeL])
+    clothes2.colors.extend([colorBlue])
+    clothes3.sizes.extend([sizeS, sizeM])
+    clothes3.colors.extend([colorGreen, colorRed])
+
+    # Create reviews
+    review1 = Review(content='Great quality!', user=user1, clothes=clothes1)
+    review2 = Review(content='Loved the color.', user=user2, clothes=clothes2)
+
+    # Add to session and commit
+    db.session.add_all([user1, user2, category1, category2, category3, brand1, brand2, sizeS, sizeM, sizeL, colorRed, colorBlue, colorGreen, clothes1, clothes2, clothes3, review1, review2])
     db.session.commit()
+
+if __name__ == '__main__':
+    seed_db()
+
+
+
