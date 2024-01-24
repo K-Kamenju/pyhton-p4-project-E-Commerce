@@ -1,0 +1,14 @@
+.navbar{
+    box-shadow: 0 1px 3px -2px black;
+    padding: 15px 70px;
+}
+
+.logo{
+    width: 5vh;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
