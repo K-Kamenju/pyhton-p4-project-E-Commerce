@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../Pages/css/Login.css';
 
 function Login({ onLogin }) {
-    const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ function Login({ onLogin }) {
             onLogin();
             navigate('/');
         } catch (error) {
-            setError('Login failed: Invalid username or password');
+            setError('Login failed: Invalid email or password');
         }
     };
 
@@ -41,7 +41,7 @@ function Login({ onLogin }) {
                 <h1>Login</h1>
                 {error && <p className="text-danger">{error}</p>}
                 <div className="loginsignup-fields">
-                    <input type="text" placeholder='Username or Email' name="username" value={credentials.username} onChange={handleChange} />
+                    <input type="email" placeholder='Email' name="email" value={credentials.email} onChange={handleChange} />
                     <input type="password" placeholder='Password' name="password" value={credentials.password} onChange={handleChange} />
                 </div>
                 <button onClick={handleLoginClick}>Continue</button>
