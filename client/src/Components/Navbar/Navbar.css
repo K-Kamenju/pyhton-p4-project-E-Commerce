@@ -1,10 +1,16 @@
 .navbar{
     box-shadow: 0 1px 3px -2px black;
+    border-bottom: #da8947 2px solid;
     padding: 15px 70px;
 }
 
 .logo{
     width: 7vh;
+}
+
+.logo:hover {
+    scale: 1.2;
+    transition: 900ms ease;
 }
 
 .nav-logo {
@@ -49,4 +55,14 @@
 
 Link {
     text-decoration: none;
+}
+
+.list {
+    color: black;
+}
+
+.list:hover {
+    color: red;
+    scale: 1.2;
+    transition: 500ms ease;
 }

@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom'
 function CoverImage() {
     return (
         <div className='container'>
-            <h2 >Title</h2>
+            <h2 className='title m-3'>Title</h2>
             <h4>
-                <span>Price | </span>
-                <span><i className="fa fa-star" aria-hidden="true" id="rating">  Rating</i></span>
+                <span className='title-md'>Price | </span>
+                <span className='title-md '><i className="fa fa-star" aria-hidden="true" id="rating">  Rating</i></span>
             </h4>
-            <p>
+            <p className='title-sm p-3'>
                 Description
             </p>
             <div className="button">

@@ -17,19 +17,22 @@ function Navbar() {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav ms-auto link-color">
                     <Link 
-                    className="nav-link "
+                    className='list m-3'
+                    style={{textDecoration:"none"}}
                     to="/" 
                     onClick={()=>{setMenu("home")}}>
                         Home{menu==="home"?<hr/>:<></>}
                     </Link>
                     <Link 
-                    className="nav-link" 
+                    className='list m-3'
+                    style={{textDecoration:"none"}} 
                     to="/about" 
                     onClick={()=>{setMenu("about")}}>
                         About{menu==="about"?<hr/>:<></>}
                     </Link>
                     <Link 
-                    className="nav-link" 
+                    className='list m-3'
+                    style={{textDecoration:"none"}} 
                     to="/categories" 
                     onClick={()=>{setMenu("categories")}}>
                         Categories{menu==="categories"?<hr/>:<></>}
