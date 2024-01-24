@@ -8,6 +8,11 @@
     width: 7vh;
 }
 
+Link .fa{
+    color: black;
+    list-style: none;
+}
+
 .fa-shopping-cart:hover {
     scale: 1.2;
     transition: 900ms ease;
