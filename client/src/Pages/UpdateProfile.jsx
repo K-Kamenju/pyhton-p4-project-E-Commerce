@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function UpdateProfile() {
     return (
-        <div>UpdateProfile</div>
+        <Link to="/profile/profileId"><div>Click Here to Update Profile</div></Link>
     )
 }
 

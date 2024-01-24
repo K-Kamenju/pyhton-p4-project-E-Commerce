@@ -11,6 +11,7 @@ import Categories from '../../Pages/Categories';
 import Footer from '../Footer/Footer';
 import UpdateProfile from '../../Pages/UpdateProfile';
 import PostProduct from '../../Pages/PostProduct';
+import ProfileForm from '../../Pages/ProfileForm';
 
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/profile/profileId" element={<UpdateProfile />} /> 
+          <Route path="/profile" element={<UpdateProfile />} /> 
+          <Route path="/profile/:profileId" element={< ProfileForm />} />
           <Route path="/post-product" element={<PostProduct />} />
        </Routes>
        <Footer />
