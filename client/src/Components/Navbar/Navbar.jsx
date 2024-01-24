@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Navbar.css'
 import logo from '../../Assets/logo.png'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
 
@@ -15,29 +16,23 @@ function Navbar() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav ms-auto link-color">
-                    <a 
+                    <Link 
                     className="nav-link " 
                     aria-current="page" 
-                    href="#" 
+                    to="/" 
                     onClick={()=>{setMenu("home")}}>
                         Home{menu==="home"?<hr/>:<></>}
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                     className="nav-link" 
-                    href="#" 
+                    to="/about" 
                     onClick={()=>{setMenu("about")}}>
                         About{menu==="about"?<hr/>:<></>}
-                    </a>
-                    <a 
-                    className="nav-link" 
-                    href="#"
-                    onClick={()=>{setMenu("products")}}>
-                        Products{menu==="products"?<hr/>:<></>}
-                    </a>
+                    </Link>
                 </div>
                 <div className="navbar-nav ms-auto">
-                    <button className="btn btn-sm btn-outline-success p-2 m-2">Login</button>
-                    <i className="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
+                    <button className="btn btn-sm btn-outline-success p-2 m-2"><Link to="/login">Login</Link></button>
+                    <Link to="/cart"><i className="fa fa-shopping-cart fa-3x mx-1" aria-hidden="true"></i></Link>
                     <div className="nav-cart-count">0</div>
                 </div>
             </div>

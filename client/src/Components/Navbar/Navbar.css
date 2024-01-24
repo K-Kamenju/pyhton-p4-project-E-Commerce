@@ -31,7 +31,7 @@
     font-size: 20px;
 }
 
-.navbar-nav:hover {
+.navbar-nav i:hover {
     color:red;
 
 }
@@ -44,5 +44,5 @@
     width: 80%;
     height: 3px;
     border-radius: 10px;
-    background: #FF4141;
+    background: #ff0000;
 }
