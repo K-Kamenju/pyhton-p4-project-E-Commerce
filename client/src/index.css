@@ -13,6 +13,7 @@ code {
 }
 
 .landing-page {
+  border-bottom: #da8947 3px solid;
   background: linear-gradient(180deg, rgb(160, 201, 218), white 70%); ;
 }
 

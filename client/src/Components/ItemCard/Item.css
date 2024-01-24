@@ -1,5 +1,5 @@
 .card:hover {
-    scale: 1.01;
+    scale: 1.05;
     transition: 900ms ease;
     row-gap: 10px;
 }
