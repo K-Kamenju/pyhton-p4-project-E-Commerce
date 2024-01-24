@@ -12,3 +12,7 @@
     background: #252525;
     align-items: center;
 }
+
+.top-list {
+    border-top: #da8947 2px solid;
+}

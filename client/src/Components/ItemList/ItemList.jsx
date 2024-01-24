@@ -4,14 +4,14 @@ import './ItemList.css'
 
 function ItemList() {
     return (
-        <div className='container'>
-            <h1 className='mt-5 title-category'>Item List<hr /></h1>
+        <div className='container top-list'>
+            <h1 className='mt-5 mb-5 title-category'>Item List<hr /></h1>
             <Item />
-            <h1 className='mt-5 title-category'>Item List<hr /></h1>
+            <h1 className='mt-5 mb-5 title-category'>Item List<hr /></h1>
             <Item />
-            <h1 className='mt-5 title-category'>Item List<hr /></h1>
+            <h1 className='mt-5 mb-5 title-category'>Item List<hr /></h1>
             <Item />
-            <h1 className='mt-5 title-category'>Item List<hr /></h1>
+            <h1 className='mt-5 mb-5 title-category'>Item List<hr /></h1>
             <Item />
         </div>
     )

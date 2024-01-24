@@ -32,6 +32,45 @@ code {
 }
 
 /*-----------------------------------*\
+  # GLOBAL STYLES
+\*-----------------------------------*/
+
+:root {
+  /* This are my custom properties */
+  /* Background colors */
+  --background: rgb(15, 17, 21);
+  --banner-background: rgb(49, 48, 54);
+  --banner-opacity: rgba(49, 48, 54, 0.5);
+  --vignette: rgba(0, 0, 0, 0.7);
+  --on-surface: rgb(234, 229, 255);
+  --on-surface-text: rgb(111, 111, 113);
+  --on-surface-text-opacity: rgba(111, 111, 113, 0.5);
+  --primary-btn: rgb(219, 0, 40);
+  --on-surface-opacity: rgba(234, 229, 255, 0.4);
+  --white: rgb(255, 255, 255);
+  --primary: rgb(219, 0, 40);
+
+
+  /* Gradient colors */
+  --overlay: 90deg, rgb(15, 17, 21) 0%, rgba(15, 17, 21, 0.5) 100%;
+
+  /*Shadow*/
+  --shadow: 0 1px 4px rgba(0, 0, 0, 2);
+  
+  /*Border Radius*/
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-16: 16px;
+  --radius-24: 24px;
+  --radius-36: 36px;
+
+  /*Transition*/
+  --transition-short: 250ms ease;
+  --transition-long: 500ms ease;
+  --transition-longest: 900ms ease;
+
+}
+/*-----------------------------------*\
   # WEBKIT SCROLLBAR STYLES
 \*-----------------------------------*/
 
