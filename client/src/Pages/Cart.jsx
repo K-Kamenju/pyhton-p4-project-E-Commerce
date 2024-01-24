@@ -1,5 +1,6 @@
 import React from 'react'
 import product from '../Assets/product.png'
+import '../Pages/css/Cart.css'
 
 function Cart() {
     return (
@@ -17,9 +18,10 @@ function Cart() {
                 <div className="cartitems-format cartitems-format-main">
                     <img src={product} alt="" className='carticon-product-icon' />
                     <p>title</p>
-                    <p>Ksh Price: </p>
+                    <p>15 </p>
                     <button className='cartitems-quantity'>Quantity</button>
-                    <i className="fa fa-trash-o cartitems-remove-icon" aria-hidden="true"></i>
+                    <p>30</p>
+                    <i className="fa fa-trash-o fa-2x cartitems-remove-icon" aria-hidden="true"></i>
                 </div>
                 <hr />
             </div>
