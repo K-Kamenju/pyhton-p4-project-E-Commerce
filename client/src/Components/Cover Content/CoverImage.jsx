@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function CoverImage() {
     return (
         <div>
-            <Link to ="/product/:productId"><img src={exclusive} alt="cover photo" /></Link>
+            <Link to ="/product/:productId"><img src={exclusive} alt="cover" /></Link>
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import './CoverContent.css'
-import arrow from '../../Assets/arrow.png'
 import { Link } from 'react-router-dom'
 
 function CoverImage() {

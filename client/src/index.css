@@ -30,3 +30,39 @@ code {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 25px;
 }
+
+/*-----------------------------------*\
+  # WEBKIT SCROLLBAR STYLES
+\*-----------------------------------*/
+
+::-webkit-scrollbar-thumb {
+  background: var(--background);
+  border-radius: var(--radius-4);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-button {
+  background: var(--on-surface-text); /* Change the color of the buttons */
+}
+
+/* Customize the corners of the scrollbar */
+::-webkit-scrollbar-corner {
+  background: var(--on-surface-opacity); /* Change the color of the corners */
+}
+
+/* Hide the scrollbar when not hovering over it */
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+  height: 12px; /* Set the height of the scrollbar */
+}
+
+:is(:hover, :focus-within)::-webkit-scrollbar-thumb {
+  background-color: var(--banner-background);
+}
+
+/*-----------------------------------*\
+  # END WEBKIT SCROLLBAR STYLES
+\*-----------------------------------*/
