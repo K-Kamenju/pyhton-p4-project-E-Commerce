@@ -4,11 +4,45 @@
 }
 
 .logo{
-    width: 5vh;
+    width: 7vh;
 }
 
 .nav-logo {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.nav-cart-count{
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 11px;
+    margin-left: auto;
+    font-size: 14px;
+    background: red;
+    color: white;
+}
+
+.link-color{
+    color: black;
+    font-size: 20px;
+}
+
+.navbar-nav:hover {
+    color:red;
+
+}
+
+.navbar-nav hr{
+    border: none;
+    padding-top: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background: #FF4141;
 }
