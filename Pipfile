@@ -12,6 +12,7 @@ werkzeug = "*"
 faker = "*"
 sqlalchemy-serializer = "*"
 flask-cors = "*"
+flask-jwt-extended = "*"
 
 [dev-packages]
 

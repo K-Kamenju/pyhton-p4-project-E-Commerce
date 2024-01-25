@@ -2,6 +2,7 @@ import React from 'react';
 import product_photo from '../../Assets/product.png';
 import './Item.css';
 import { Link } from 'react-router-dom';
+import product_photos from '../../Assets/product.png';
 
 function Item({ product }) {
     const handleImageError = (e) => {
@@ -13,7 +14,7 @@ function Item({ product }) {
             <div className="card">
                 <Link to={`/product/${product.id}`}>
                     <img 
-                        src={product.image_url} 
+                        src={product_photos || product.image_url} 
                         className="card-img-top" 
                         alt={product.title}
                         onError={handleImageError} 

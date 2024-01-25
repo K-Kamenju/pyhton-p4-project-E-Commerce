@@ -1,12 +1,22 @@
 import React from 'react';
 import './ProductData.css';
 import Swal from 'sweetalert2';
+import product_page from '../../Assets/product.png';
 import { useNavigate } from 'react-router-dom';
 
 function ProductData({ product }) {
     const navigate = useNavigate();
     const addToCart = async () => {
         const token = localStorage.getItem('token');
+        if (!token) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You must be logged in to add to cart.',
+            });
+            navigate('/login');
+            return;
+        }
         const response = await fetch('/api/cart', {
             method: 'POST',
             headers: {
@@ -38,7 +48,7 @@ function ProductData({ product }) {
             <div className="row">
                 <div className="col align-self-start">
                     <div className="mb-3 pt-3 pb-3">
-                        <img src={product.image_url || 'path_to_default_image'} className="card-img-top" alt={product.title} />
+                        <img src={product_page || product.image_url} className="card-img-top" alt={product.title} />
                     </div>
                 </div>
                 <div className="col align-self-start">
@@ -47,7 +57,7 @@ function ProductData({ product }) {
                     <h4 className='btn btn-sm btn-outline-danger mt-3'>Price: {product.price}</h4>
                     <p className="card-text mt-4">{product.description}</p>
                     
-                    <h1 className='mt-3'>Select Size:</h1>
+                    <h1 className='mt-3'>Available Size:</h1>
                     <div className="productdisplay-right-sizes me-5 mt-3 py-2 pb-3">
                         <div className='btn btn-md btn-outline-dark m-3'>S</div>
                         <div className='btn btn-md btn-outline-dark m-3'>M</div>
