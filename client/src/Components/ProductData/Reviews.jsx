@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2'
 
 function Reviews({ reviews, productId }) {
   const [reviewText, setReviewText] = useState('');
@@ -10,12 +11,17 @@ function Reviews({ reviews, productId }) {
     const token = localStorage.getItem('token');
     if (!token) {
       // If not logged in, alert the user to log in
-      alert('Please log in to submit a review.');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You must be logged in to post a review.",
+        footer: "Sorry..."
+      });
       return;
     }
 
     // Submit the new review to the backend
-    fetch(`/api/product/${productId}/reviews`, {
+    fetch(`/product/${productId}/review`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

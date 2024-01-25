@@ -20,6 +20,7 @@ function CoverImage({ product }) {
                 <img 
                     src={imageUrl} 
                     alt={product.title} 
+                    className='mt-5 mb-5 img-fluid'
                     onError={handleImageError} // Use onError event handler
                 />
             </Link>

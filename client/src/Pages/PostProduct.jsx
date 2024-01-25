@@ -1,43 +1,69 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 function PostProduct() {
+  const navigate = useNavigate();
   const [productData, setProductData] = useState({
-    name: '',
+    title: '',
     price: '',
     description: '',
     category: 'men', // Default category
-    imageUrl: '',
-    sizes: [], // Array to store selected sizes
+    image_url: '',
+    available_sizes: [],
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    // Check if the input is for sizes (checkboxes)
-    if (name === 'sizes') {
+    if (name === 'available_sizes') {
       const isChecked = e.target.checked;
       const sizeValue = e.target.value;
-
-      // Update sizes array based on checkbox state
       setProductData((prevData) => ({
         ...prevData,
-        sizes: isChecked
-          ? [...prevData.sizes, sizeValue]
-          : prevData.sizes.filter((size) => size !== sizeValue),
+        available_sizes: isChecked
+          ? [...prevData.available_sizes, sizeValue]
+          : prevData.available_sizes.filter((size) => size !== sizeValue),
       }));
     } else {
-      // Update other input fields
       setProductData({ ...productData, [name]: value });
     }
   };
 
-  const userId = 1;
-
   const handlePostProduct = () => {
-    // Implement the logic to post the product to the backend
-    console.log('Posting product:', { ...productData, userId });
-    // You may want to make an API call to post the product to the database
-    // After posting, you may want to redirect the user or show a success message
+    const token = localStorage.getItem('token');
+    if (!token) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You must be logged in to post a review.",
+        footer: "Sorry..."
+      });
+      return;
+    }
+
+    const postData = {
+      ...productData,
+      available_sizes: productData.available_sizes.join(','),
+    };
+
+    fetch('/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(postData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Product posted:', data);
+      // Handle successful post, e.g., redirect or show success message
+      navigate('/profile')
+    })
+    .catch(error => {
+      console.error('Error posting product:', error);
+      // Handle error, e.g., show error message
+    });
   };
 
   return (
@@ -45,12 +71,12 @@ function PostProduct() {
       <h2>Post a Product</h2>
       <form>
         <div className="mb-3">
-          <label className="form-label">Product Name</label>
+          <label className="form-label">Product Title</label>
           <input
             type="text"
             className="form-control"
-            name="name"
-            value={productData.name}
+            name="title"
+            value={productData.title}
             onChange={handleInputChange}
           />
         </div>
@@ -83,6 +109,7 @@ function PostProduct() {
           >
             <option value="men">Men</option>
             <option value="women">Women</option>
+            <option value="kids">Kids</option>
           </select>
         </div>
         <div className="mb-3">
@@ -90,74 +117,29 @@ function PostProduct() {
           <input
             type="text"
             className="form-control"
-            name="imageUrl"
-            value={productData.imageUrl}
+            name="image_url"
+            value={productData.image_url}
             onChange={handleInputChange}
           />
         </div>
         <div className="mb-3">
           <label className="form-label">Available Sizes</label>
           <div className="d-flex">
-            <div className="form-check m-2">
+            {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
+              <div className="form-check m-2" key={size}>
                 <input
-                className="form-check-input"
-                type="checkbox"
-                value="S"
-                name="sizes"
-                checked={productData.sizes.includes('S')}
-                onChange={handleInputChange}
+                  className="form-check-input"
+                  type="checkbox"
+                  value={size}
+                  name="available_sizes"
+                  checked={productData.available_sizes.includes(size)}
+                  onChange={handleInputChange}
                 />
-                <label className="form-check-label">S</label>
-            </div>
-            <div className="form-check m-2">
-                <input
-                className="form-check-input"
-                type="checkbox"
-                value="M"
-                name="sizes"
-                checked={productData.sizes.includes('M')}
-                onChange={handleInputChange}
-                />
-                <label className="form-check-label">M</label>
-            </div>
-            <div className="form-check m-2">
-                <input
-                className="form-check-input"
-                type="checkbox"
-                value="L"
-                name="sizes"
-                checked={productData.sizes.includes('L')}
-                onChange={handleInputChange}
-                />
-                <label className="form-check-label">L</label>
-            </div>
-            <div className="form-check m-2">
-                <input
-                className="form-check-input"
-                type="checkbox"
-                value="XL"
-                name="sizes"
-                checked={productData.sizes.includes('XL')}
-                onChange={handleInputChange}
-                />
-                <label className="form-check-label">XL</label>
-            </div>
-            <div className="form-check m-2">
-                <input
-                className="form-check-input"
-                type="checkbox"
-                value="XXL"
-                name="sizes"
-                checked={productData.sizes.includes('XXL')}
-                onChange={handleInputChange}
-                />
-                <label className="form-check-label">XXL</label>
-            </div>
+                <label className="form-check-label">{size}</label>
+              </div>
+            ))}
           </div>
-          {/* Add more size options as needed */}
         </div>
-        {/* Include hidden input for userId */}
-        <input type="hidden" name="userId" value={userId} />
         <button
           type="button"
           className="btn btn-primary"

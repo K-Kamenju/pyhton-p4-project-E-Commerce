@@ -12,7 +12,6 @@ import Categories from '../../Pages/Categories';
 import Footer from '../Footer/Footer';
 import UpdateProfile from '../../Pages/UpdateProfile';
 import PostProduct from '../../Pages/PostProduct';
-import ProfileForm from '../../Pages/ProfileForm';
 import { AuthContext } from '../Servicess/Authentication'; // Adjust the path as needed
 
 function App() {
@@ -37,7 +36,6 @@ function App() {
         <Route path="/signup" element={isAuthenticated ? <Navigate to="/" /> : <SignUp />} />
         {isAuthenticated && <Route path="/profile" element={<UpdateProfile />} />}
         {isAuthenticated && <Route path="/post-product" element={<PostProduct />} />}
-        {isAuthenticated && <Route path="/profile/:profileId" element={<ProfileForm />} />}
       </Routes>
       <Footer />
     </BrowserRouter>

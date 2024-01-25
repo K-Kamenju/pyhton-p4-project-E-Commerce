@@ -31,7 +31,7 @@ function About() {
         </div>
         <div className="col-lg-4">
           <img
-            src="https://via.placeholder.com/300"
+            src="https://via.placeholder.com/500"
             alt="About Us"
             className="img-fluid rounded"
           />

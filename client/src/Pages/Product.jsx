@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import ProductData from '../Components/ProductData/ProductData';
 import Reviews from '../Components/ProductData/Reviews';
 
+
 function Product() {
     const { productId } = useParams(); // Assuming you're using React Router with a route like '/product/:productId'
     const [product, setProduct] = useState(null);

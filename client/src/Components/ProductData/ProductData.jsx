@@ -1,7 +1,38 @@
 import React from 'react';
 import './ProductData.css';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 function ProductData({ product }) {
+    const navigate = useNavigate();
+    const addToCart = async () => {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ product_id: product.id, quantity: 1 }), // Assuming quantity is 1
+        });
+        if (response.ok) {
+            Swal.fire({
+                icon: "success",
+                title: "Yaay",
+                text: "Adding to Cart",
+                footer: 'Its almost Yours'
+              });
+            navigate('/cart');
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Adding to Cart Failed!",
+                footer: 'Sorry...'
+              });
+        }
+    };
+
     return (
         <div className="container">
             <div className="row">
@@ -24,7 +55,7 @@ function ProductData({ product }) {
                         <div className='btn btn-md btn-outline-dark m-3'>XL</div>
                         <div className='btn btn-md btn-outline-dark m-3'>XXl</div>
                     </div>
-                    <button className='btn btn-lg btn-outline-danger mt-2 mb-4'>Add to Cart</button>
+                    <button className='btn btn-lg btn-outline-danger mt-2 mb-4' onClick={addToCart}>Add to Cart</button>
                 </div>
             </div>
         </div>            
