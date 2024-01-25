@@ -1,15 +1,34 @@
 import React, { useState } from 'react';
 
-function Reviews() {
+function Reviews({ reviews, productId }) {
   const [reviewText, setReviewText] = useState('');
-  const [reviews, setReviews] = useState([]);
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
-    // Save the review to the state
-    setReviews([...reviews, reviewText]);
-    // Clear the input field after submitting the review
-    setReviewText('');
+
+    // Check if the user is logged in
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // If not logged in, alert the user to log in
+      alert('Please log in to submit a review.');
+      return;
+    }
+
+    // Submit the new review to the backend
+    fetch(`/api/product/${productId}/reviews`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // Use the JWT token from localStorage
+      },
+      body: JSON.stringify({ content: reviewText, rating: 5 }) // Example: hardcoding the rating as 5
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Update the reviews list with the new review
+      reviews.push({ content: reviewText, rating: 5 }); // Update this line to push the review object
+      setReviewText('');
+    });
   };
 
   return (
@@ -31,13 +50,13 @@ function Reviews() {
       </form>
 
       <div className=" mt-5">
-        <h2 className='descriptionbox-nav-box'>All Reviews:55</h2>
+        <h2 className='descriptionbox-nav-box'>All Reviews:</h2>
         {reviews.length === 0 ? (
           <p className='descriptionbox-description'>No reviews yet.</p>
         ) : (
           <ul className='descriptionbox-description'>
             {reviews.map((review, index) => (
-              <li key={index}>{review}</li>
+              <li key={index}>{review.content}</li>
             ))}
           </ul>
         )}
