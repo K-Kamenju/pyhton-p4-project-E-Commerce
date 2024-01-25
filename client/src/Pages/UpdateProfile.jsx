@@ -84,7 +84,7 @@ function Profile() {
                             <td>{product.price}</td>
                             <td>
                             <button
-                                    className="btn btn-sm btn-outline-danger"
+                                    className="btn btn-sm btn-outline-primary me-2"
                                     onClick={() => handleUpdateProduct(product.id)}
                                 >
                                     Update
