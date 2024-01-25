@@ -86,7 +86,7 @@ function Navbar({ isLoggedIn, onLogout }) {
                     </div>
                     <div className="navbar-nav ms-auto">
                         
-                        <button className="btn btn-sm btn-outline-danger p-2 m-2" onClick={onLogout}>Logout</button>
+                        <Link to="/"><button className="btn btn-sm btn-outline-danger p-2 m-2" onClick={onLogout}>Logout</button></Link>
                         
                         <Link to="/cart"><i className="fa fa-shopping-cart fa-3x mx-1" aria-hidden="true"></i></Link>
                         <div className="nav-cart-count">0</div>

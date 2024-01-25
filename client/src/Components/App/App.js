@@ -21,6 +21,7 @@ function App() {
   const handleLogoutClick = () => {
     // Call the logout function
     logout();
+    
   };
 
   return (
