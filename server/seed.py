@@ -1,56 +1,67 @@
-from app import db
-from models import User, Category, Clothes, Brand, Size, Color, Review, clothes_sizes, clothes_colors
+from faker import Faker
+from models import db, User, Product, Review
+from app import app
+import random
 
-def seed_db():
-    db.drop_all()
-    db.create_all()
+def seed_data():
+    fake = Faker()
 
-    # Create users
-    user1 = User(username='alice')
-    user2 = User(username='bob')
-
-    # Create categories
-    category1 = Category(name='T-Shirts')
-    category2 = Category(name='Jeans')
-    category3 = Category(name='Dresses')
-
-    # Create brands
-    brand1 = Brand(name='BrandA')
-    brand2 = Brand(name='BrandB')
-
-    # Create sizes
-    sizeS = Size(name='S')
-    sizeM = Size(name='M')
-    sizeL = Size(name='L')
-
-    # Create colors
-    colorRed = Color(name='Red')
-    colorBlue = Color(name='Blue')
-    colorGreen = Color(name='Green')
-
-    # Create clothes
-    clothes1 = Clothes(name='Cool T-Shirt', description='A very cool T-Shirt', price=19.99, user=user1, category=category1, brand=brand1)
-    clothes2 = Clothes(name='Blue Jeans', description='Comfortable blue jeans', price=39.99, user=user2, category=category2, brand=brand2)
-    clothes3 = Clothes(name='Summer Dress', description='Perfect for the summer', price=29.99, user=user1, category=category3, brand=brand1)
-
-    # Assign sizes and colors to clothes
-    clothes1.sizes.extend([sizeS, sizeM])
-    clothes1.colors.extend([colorRed, colorGreen])
-    clothes2.sizes.extend([sizeM, sizeL])
-    clothes2.colors.extend([colorBlue])
-    clothes3.sizes.extend([sizeS, sizeM])
-    clothes3.colors.extend([colorGreen, colorRed])
-
-    # Create reviews
-    review1 = Review(content='Great quality!', user=user1, clothes=clothes1)
-    review2 = Review(content='Loved the color.', user=user2, clothes=clothes2)
-
-    # Add to session and commit
-    db.session.add_all([user1, user2, category1, category2, category3, brand1, brand2, sizeS, sizeM, sizeL, colorRed, colorBlue, colorGreen, clothes1, clothes2, clothes3, review1, review2])
+    # Seed Users
+    users = []
+    for _ in range(20):
+        user = User(
+            name=fake.name(),
+            email=fake.email(),
+            password=fake.password()
+        )
+        db.session.add(user)
+        users.append(user)
+    
     db.session.commit()
 
+    # Seed Products
+    categories = ['men', 'women', 'kids']
+    sizes = ['S', 'M', 'L', 'XL', 'XXL']  # Example sizes
+    for _ in range(50):
+        user = random.choice(users)
+        available_sizes = random.sample(sizes, k=random.randint(1, len(sizes)))  # Randomly select available sizes
+
+        product = Product(
+            title=fake.catch_phrase(),
+            description=fake.text(),
+            price=round(random.uniform(100, 1000), 0),
+            stock_quantity=random.randint(0, 100),
+            user_id=user.id,
+            category=random.choice(categories),
+            available_sizes=','.join(available_sizes),  # Join sizes as a comma-separated string
+            image_url='https://via.placeholder.com/500'  # Corrected line
+        )
+        db.session.add(product)
+    
+    db.session.commit()
+
+    # Seed Reviews
+    products = Product.query.all()
+    for product in products:
+        num_reviews = random.randint(1, 5)
+        for _ in range(num_reviews):
+            review = Review(
+                content=fake.text(),
+                rating=round(random.randint(1, 5), 2),
+                user_id=random.choice(users).id,
+                product_id=product.id
+            )
+            db.session.add(review)
+        
+        db.session.commit()
+
+        # Recalculate rating for each product
+        product.rating = product.calculate_average_rating()
+        db.session.commit()
+
 if __name__ == '__main__':
-    seed_db()
-
-
-
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
+        seed_data()
+        print("Database seeded successfully!")
