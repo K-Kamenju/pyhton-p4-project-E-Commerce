@@ -16,11 +16,16 @@ import ProfileForm from '../../Pages/ProfileForm';
 import { AuthContext } from '../Servicess/Authentication'; // Adjust the path as needed
 
 function App() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, logout } = useContext(AuthContext);
+
+  const handleLogoutClick = () => {
+    // Call the logout function
+    logout();
+  };
 
   return (
     <BrowserRouter>
-      <Navbar isLoggedIn={isAuthenticated} />
+      <Navbar isLoggedIn={isAuthenticated}  onLogout={handleLogoutClick}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

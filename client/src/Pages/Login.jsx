@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../Pages/css/Login.css';
+import { AuthContext } from '../Components/Servicess/Authentication'; // Adjust the path as needed
 
-function Login({ onLogin }) {
+function Login() {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,7 +30,7 @@ function Login({ onLogin }) {
 
             const data = await response.json();
             localStorage.setItem('token', data.access_token); // Store the JWT token
-            onLogin();
+            login(data.access_token);
             navigate('/');
         } catch (error) {
             setError('Login failed: Invalid email or password');
