@@ -1,0 +1,37 @@
+.content h2 {
+    /* Style for the movie-title */
+    color: var(--on-surface);
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.content h4 {
+    /* Style for the wordings */
+    color: var(--on-surface);
+    opacity: 0.7;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.content h4 span {
+    /* Style for the background info about the movie */
+    padding: 0px 10px;
+    border-right: 2px solid var(--on-surface-text);
+}
+
+
+.content h4 span:last-child {
+    border-right: 0;
+}
+
+.banner .content h4 span:first-child {
+    padding-left: 0;
+}
+
+.overview {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 20px;
+    line-height: 25px;
+    color: var(--on-surface);
+}

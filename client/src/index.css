@@ -11,3 +11,98 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.landing-page {
+  border-bottom: #da8947 3px solid;
+  background: linear-gradient(180deg, rgb(160, 201, 218), white 70%); ;
+}
+
+.title {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 40px;
+}
+
+.title-sm {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+}
+
+.title-md {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 25px;
+}
+
+/*-----------------------------------*\
+  # GLOBAL STYLES
+\*-----------------------------------*/
+
+:root {
+  /* This are my custom properties */
+  /* Background colors */
+  --background: rgb(15, 17, 21);
+  --banner-background: rgb(49, 48, 54);
+  --banner-opacity: rgba(49, 48, 54, 0.5);
+  --vignette: rgba(0, 0, 0, 0.7);
+  --on-surface: rgb(234, 229, 255);
+  --on-surface-text: rgb(111, 111, 113);
+  --on-surface-text-opacity: rgba(111, 111, 113, 0.5);
+  --primary-btn: rgb(219, 0, 40);
+  --on-surface-opacity: rgba(234, 229, 255, 0.4);
+  --white: rgb(255, 255, 255);
+  --primary: rgb(219, 0, 40);
+
+
+  /* Gradient colors */
+  --overlay: 90deg, rgb(15, 17, 21) 0%, rgba(15, 17, 21, 0.5) 100%;
+
+  /*Shadow*/
+  --shadow: 0 1px 4px rgba(0, 0, 0, 2);
+  
+  /*Border Radius*/
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-16: 16px;
+  --radius-24: 24px;
+  --radius-36: 36px;
+
+  /*Transition*/
+  --transition-short: 250ms ease;
+  --transition-long: 500ms ease;
+  --transition-longest: 900ms ease;
+
+}
+/*-----------------------------------*\
+  # WEBKIT SCROLLBAR STYLES
+\*-----------------------------------*/
+
+::-webkit-scrollbar-thumb {
+  background: var(--background);
+  border-radius: var(--radius-4);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-button {
+  background: var(--on-surface-text); /* Change the color of the buttons */
+}
+
+/* Customize the corners of the scrollbar */
+::-webkit-scrollbar-corner {
+  background: var(--on-surface-opacity); /* Change the color of the corners */
+}
+
+/* Hide the scrollbar when not hovering over it */
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+  height: 12px; /* Set the height of the scrollbar */
+}
+
+:is(:hover, :focus-within)::-webkit-scrollbar-thumb {
+  background-color: var(--banner-background);
+}
+
+/*-----------------------------------*\
+  # END WEBKIT SCROLLBAR STYLES
+\*-----------------------------------*/
