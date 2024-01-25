@@ -143,7 +143,7 @@ def get_products_by_criteria():
 
 @app.route('/api/products/category/<string:category_name>', methods=['GET'])
 def get_products_by_category(category_name):
-    products = Product.query.filter_by(category=category_name).limit(10).all()
+    products = Product.query.filter_by(category=category_name).all()
     return jsonify([product.to_dict() for product in products])
 
 @app.route('/api/products', methods=['POST'])
@@ -256,6 +256,29 @@ def delete_product(product_id):
     db.session.delete(product)
     db.session.commit()
     return jsonify({'message': 'Product deleted successfully'}), 200
+
+@app.route('/api/product/<int:product_id>', methods=['PATCH'])
+@jwt_required()
+def update_product(product_id):
+    user_email = get_jwt_identity()
+    user = User.query.filter_by(email=user_email).first()
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+
+    product = Product.query.get_or_404(product_id)
+    if product.user_id != user.id:
+        return jsonify({'message': 'Not authorized to update this product'}), 403
+
+    data = request.get_json()
+    product.title = data.get('title', product.title)
+    product.price = data.get('price', product.price)
+    product.description = data.get('description', product.description)
+    product.category = data.get('category', product.category)
+    product.image_url = data.get('image_url', product.image_url)
+    product.available_sizes = data.get('available_sizes', product.available_sizes)
+
+    db.session.commit()
+    return jsonify({'message': 'Product updated successfully', 'product': product.to_dict()}), 200
 
 
 if __name__ == '__main__':

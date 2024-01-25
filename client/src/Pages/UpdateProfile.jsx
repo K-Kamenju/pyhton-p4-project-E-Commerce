@@ -34,6 +34,10 @@ function Profile() {
         fetchUserProducts();
     }, [navigate]);
 
+    const handleUpdateProduct = (productId) => {
+        navigate(`/update-product/${productId}`);
+    };
+
 
     const handleDeleteProduct = async (productId) => {
         const token = localStorage.getItem('token');
@@ -79,6 +83,12 @@ function Profile() {
                             <td>{product.title}</td>
                             <td>{product.price}</td>
                             <td>
+                            <button
+                                    className="btn btn-sm btn-outline-danger"
+                                    onClick={() => handleUpdateProduct(product.id)}
+                                >
+                                    Update
+                                </button>
                                 <button
                                     className="btn btn-sm btn-outline-danger"
                                     onClick={() => handleDeleteProduct(product.id)}

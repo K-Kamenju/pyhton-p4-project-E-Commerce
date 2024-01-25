@@ -13,6 +13,7 @@ import Footer from '../Footer/Footer';
 import UpdateProfile from '../../Pages/UpdateProfile';
 import PostProduct from '../../Pages/PostProduct';
 import { AuthContext } from '../Servicess/Authentication'; // Adjust the path as needed
+import UpdateProduct from '../../Pages/UpdateProduct';
 
 function App() {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -36,6 +37,7 @@ function App() {
         <Route path="/signup" element={isAuthenticated ? <Navigate to="/" /> : <SignUp />} />
         {isAuthenticated && <Route path="/profile" element={<UpdateProfile />} />}
         {isAuthenticated && <Route path="/post-product" element={<PostProduct />} />}
+        <Route path="/update-product/:productId" element={isAuthenticated ? <UpdateProduct /> : <Navigate to="/login" />} />
       </Routes>
       <Footer />
     </BrowserRouter>
