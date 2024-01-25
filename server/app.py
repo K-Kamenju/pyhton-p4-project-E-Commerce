@@ -25,6 +25,10 @@ jwt = JWTManager(app)
 
 # ... existing routes for /signup and /login ...
 
+@app.route('/')
+def index():
+    return jsonify({'message': 'Welcome to the Market API'})
+
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
