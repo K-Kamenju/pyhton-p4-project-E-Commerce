@@ -13,7 +13,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://kamenju:exqOPdmsfEV2oSnNuQHiKR2MpkS1Nyod@dpg-cmperracn0vc73cnp5m0-a.oregon-postgres.render.com/market_973s'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # JWT configuration
@@ -282,4 +282,4 @@ def update_product(product_id):
 
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(debug=True)
