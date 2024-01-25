@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import product_page from '../../Assets/product.png';
 import { useNavigate } from 'react-router-dom';
 
-function ProductData({ product }) {
+function ProductData({ product, availableSizes }) {
     const navigate = useNavigate();
     const addToCart = async () => {
         const token = localStorage.getItem('token');
@@ -57,13 +57,11 @@ function ProductData({ product }) {
                     <h4 className='btn btn-sm btn-outline-danger mt-3'>Price: {product.price}</h4>
                     <p className="card-text mt-4">{product.description}</p>
                     
-                    <h1 className='mt-3'>Available Size:</h1>
+                    <h1 className='mt-3'>Available Sizes:</h1>
                     <div className="productdisplay-right-sizes me-5 mt-3 py-2 pb-3">
-                        <div className='btn btn-md btn-outline-dark m-3'>S</div>
-                        <div className='btn btn-md btn-outline-dark m-3'>M</div>
-                        <div className='btn btn-md btn-outline-dark m-3'>L</div>
-                        <div className='btn btn-md btn-outline-dark m-3'>XL</div>
-                        <div className='btn btn-md btn-outline-dark m-3'>XXl</div>
+                    {availableSizes.map((size) => (
+                        <div key={size} className='btn btn-md btn-outline-dark m-3'>{size}</div>
+                    ))}
                     </div>
                     <button className='btn btn-lg btn-outline-danger mt-2 mb-4' onClick={addToCart}>Add to Cart</button>
                 </div>

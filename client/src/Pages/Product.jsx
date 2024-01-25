@@ -32,7 +32,7 @@ function Product() {
                     <li className="breadcrumb-item active" aria-current="page">{product.title}</li>
                 </ol>
             </div>
-            <ProductData product={product} />
+            <ProductData product={product} availableSizes={product.available_sizes}/>
             <Reviews reviews={reviews} productId={productId} />
         </>
     );
