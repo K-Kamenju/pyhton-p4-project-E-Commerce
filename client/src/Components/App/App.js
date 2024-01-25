@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Navbar from '../Navbar/Navbar';
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -13,32 +13,25 @@ import Footer from '../Footer/Footer';
 import UpdateProfile from '../../Pages/UpdateProfile';
 import PostProduct from '../../Pages/PostProduct';
 import ProfileForm from '../../Pages/ProfileForm';
+import { AuthContext } from '../Servicess/Authentication'; // Adjust the path as needed
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <BrowserRouter>
-      <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+      <Navbar isLoggedIn={isAuthenticated} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path='/categories' element={<Categories />} />
         <Route path="/product/:productId" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login onLogin={handleLogin} />} />
-        <Route path="/signup" element={isLoggedIn ? <Navigate to="/" /> : <SignUp />} />
-        {isLoggedIn && <Route path="/profile" element={<UpdateProfile />} />}
-        {isLoggedIn && <Route path="/post-product" element={<PostProduct />} />}
-        {isLoggedIn && <Route path="/profile/:profileId" element={<ProfileForm />} />}
+        <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <Login />} />
+        <Route path="/signup" element={isAuthenticated ? <Navigate to="/" /> : <SignUp />} />
+        {isAuthenticated && <Route path="/profile" element={<UpdateProfile />} />}
+        {isAuthenticated && <Route path="/post-product" element={<PostProduct />} />}
+        {isAuthenticated && <Route path="/profile/:profileId" element={<ProfileForm />} />}
       </Routes>
       <Footer />
     </BrowserRouter>

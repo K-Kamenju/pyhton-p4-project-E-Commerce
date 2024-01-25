@@ -14,7 +14,7 @@ function Login({ onLogin }) {
 
     const handleLoginClick = async () => {
         try {
-            const response = await fetch('http://localhost:5555/login', {
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
