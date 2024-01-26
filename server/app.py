@@ -138,9 +138,9 @@ def get_products_by_criteria():
     if criteria == 'highest_rated':
         products = Product.query.order_by(Product.rating.desc()).limit(5).all()
     elif criteria == 'new_arrivals':
-        products = Product.query.order_by(Product.rating.desc()).limit(5).all()
+        products = Product.query.order_by(Product.created_at.desc()).limit(5).all()
     elif criteria == 'top_picks':
-        products = Product.query.order_by(Product.rating.desc()).limit(5).all()
+        products = Product.query.order_by(Product.price.desc()).limit(5).all()
     else:
         products = Product.query.all()
     return jsonify([product.to_dict() for product in products])
