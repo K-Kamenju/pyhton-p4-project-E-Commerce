@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { useParams, useNavigate } from 'react-router-dom';
 
-
 function UpdateProduct() {
   const { productId } = useParams();
   const navigate = useNavigate();
@@ -34,9 +33,10 @@ function UpdateProduct() {
     })
     .then(response => response.json())
     .then(data => {
+      console.log("Fetched data:", data); // Debugging line
       setProductData({
         ...data,
-        available_sizes: data.available_sizes.split(','),
+        available_sizes: data.available_sizes ? data.available_sizes.split(',') : [],
       });
     })
     .catch(error => {
@@ -87,7 +87,7 @@ function UpdateProduct() {
     <div className="container mt-5">
       <h2>Update Product</h2>
       <form>
-      <div className="mb-3">
+        <div className="mb-3">
           <label className="form-label">Product Title</label>
           <input
             type="text"
