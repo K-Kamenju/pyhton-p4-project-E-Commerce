@@ -14,6 +14,7 @@ function UpdateProduct() {
     image_url: '',
     available_sizes: [],
   });
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -27,6 +28,7 @@ function UpdateProduct() {
       return;
     }
 
+    
     fetch(`https://marketx-6vt2.onrender.com/api/product/${productId}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -34,13 +36,21 @@ function UpdateProduct() {
     })
     .then(response => response.json())
     .then(data => {
+      let availableSizes = data.available_sizes;
+
+      // Check if available_sizes is a string and needs to be split into an array
+      if (typeof availableSizes === 'string') {
+        availableSizes = availableSizes.split(',');
+      }
+
       setProductData({
         ...data,
-        available_sizes: data.available_sizes.split(','),
+        available_sizes: availableSizes,
       });
     })
     .catch(error => {
       console.error('Error fetching product:', error);
+      setError(error);
     });
   }, [productId, navigate]);
 
@@ -82,6 +92,12 @@ function UpdateProduct() {
       console.error('Error updating product:', error);
     });
   };
+
+
+  
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div className="container mt-5">
