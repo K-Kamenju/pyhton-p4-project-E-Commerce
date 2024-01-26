@@ -3,10 +3,6 @@
 # Overview
 Market API is a Flask-based web application designed for managing an online marketplace. It features functionalities such as user authentication, product listing, reviews, and shopping cart management. The application utilizes Flask-SQLAlchemy for database interactions and Flask-JWT-Extended for JWT-based authentication.
 
-# Author
-Maryam Ali
-GitHub: reema1254
-
 # Installation
 Prerequisites
 Python 3.x
