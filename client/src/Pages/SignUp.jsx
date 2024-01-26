@@ -14,7 +14,7 @@ function Signup() {
 
     const handleSignupClick = async () => {
         try {
-            const response = await fetch('/signup', {
+            const response = await fetch('https://marketx-6vt2.onrender.com/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

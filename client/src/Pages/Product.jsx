@@ -10,11 +10,11 @@ function Product() {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`/api/product/${productId}`)
+        fetch(`https://marketx-6vt2.onrender.com/api/product/${productId}`)
             .then(response => response.json())
             .then(data => setProduct(data));
 
-        fetch(`/product/${productId}/reviews`)
+        fetch(`https://marketx-6vt2.onrender.com/product/${productId}/reviews`)
             .then(response => response.json())
             .then(data => setReviews(data));
     }, [productId]);

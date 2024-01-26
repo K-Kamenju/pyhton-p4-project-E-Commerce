@@ -27,7 +27,7 @@ function UpdateProduct() {
       return;
     }
 
-    fetch(`/api/product/${productId}`, {
+    fetch(`https://marketx-6vt2.onrender.com/api/product/${productId}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -65,7 +65,7 @@ function UpdateProduct() {
       available_sizes: productData.available_sizes.join(','),
     };
 
-    fetch(`/api/product/${productId}`, {
+    fetch(`https://marketx-6vt2.onrender.com/api/product/${productId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

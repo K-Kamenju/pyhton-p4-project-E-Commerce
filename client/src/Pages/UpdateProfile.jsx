@@ -15,7 +15,7 @@ function Profile() {
                 return;
             }
             try {
-                const response = await fetch('/user/products', {
+                const response = await fetch('https://marketx-6vt2.onrender.com/user/products', {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
@@ -48,7 +48,7 @@ function Profile() {
 
         if (window.confirm('Are you sure you want to delete this product?')) {
             try {
-                const response = await fetch(`/api/product/${productId}`, {
+                const response = await fetch(`https://marketx-6vt2.onrender.com/api/product/${productId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,

@@ -46,7 +46,7 @@ function PostProduct() {
       available_sizes: productData.available_sizes.join(','),
     };
 
-    fetch('/api/products', {
+    fetch('https://marketx-6vt2.onrender.com/api/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ function Reviews({ reviews, productId }) {
     }
 
     // Submit the new review to the backend
-    fetch(`/product/${productId}/review`, {
+    fetch(`https://marketx-6vt2.onrender.com/product/${productId}/review`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ function ProductData({ product, availableSizes }) {
             navigate('/login');
             return;
         }
-        const response = await fetch('/api/cart', {
+        const response = await fetch('https://marketx-6vt2.onrender.com/api/cart', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

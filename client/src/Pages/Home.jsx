@@ -17,7 +17,7 @@ function Home() {
     useEffect(() => {
         if (authContext.isAuthenticated) {
             // Fetch user data only if the user is authenticated
-            fetch('/api/user', {
+            fetch('https://marketx-6vt2.onrender.com/api/user', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -39,22 +39,22 @@ function Home() {
         }
 
         // Fetch featured product
-        fetch('/api/products/featured')
+        fetch('https://marketx-6vt2.onrender.com/api/products/featured')
             .then(response => response.json())
             .then(data => setFeaturedProduct(data));
 
         // Fetch highest rated products
-        fetch('/api/products?criteria=highest_rated')
+        fetch('https://marketx-6vt2.onrender.com/api/products?criteria=highest_rated')
             .then(response => response.json())
             .then(data => setHighestRatedProducts(data));
 
         // Fetch new arrivals
-        fetch('/api/products?criteria=new_arrivals')
+        fetch('https://marketx-6vt2.onrender.com/api/products?criteria=new_arrivals')
             .then(response => response.json())
             .then(data => setNewArrivals(data));
 
         // Fetch top picks
-        fetch('/api/products?criteria=top_picks')
+        fetch('https://marketx-6vt2.onrender.com/api/products?criteria=top_picks')
             .then(response => response.json())
             .then(data => setTopPicks(data));
     }, [authContext.isAuthenticated]);

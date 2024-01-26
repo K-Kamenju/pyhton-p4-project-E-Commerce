@@ -8,15 +8,15 @@ function Categories() {
     const [kidsProducts, setKidsProducts] = useState([]);
 
     useEffect(() => {
-        fetch('/api/products/category/men')
+        fetch('https://marketx-6vt2.onrender.com/api/products/category/men')
             .then(response => response.json())
             .then(data => setMenProducts(data));
 
-        fetch('/api/products/category/women')
+        fetch('https://marketx-6vt2.onrender.com/api/products/category/women')
             .then(response => response.json())
             .then(data => setWomenProducts(data));
 
-        fetch('/api/products/category/kids')
+        fetch('https://marketx-6vt2.onrender.com/api/products/category/kids')
             .then(response => response.json())
             .then(data => setKidsProducts(data));
     }, []);

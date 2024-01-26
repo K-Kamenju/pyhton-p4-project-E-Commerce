@@ -11,7 +11,7 @@ function Cart() {
     const fetchCartItems = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('/api/cart', {
+            const response = await fetch('https://marketx-6vt2.onrender.com/api/cart', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -30,7 +30,7 @@ function Cart() {
 
     const handleRemoveItem = async (itemId) => {
         const token = localStorage.getItem('token');
-        await fetch(`/api/cart/${itemId}`, {
+        await fetch(`https://marketx-6vt2.onrender.com/api/cart/${itemId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -41,7 +41,7 @@ function Cart() {
 
     const handleQuantityChange = async (itemId, newQuantity) => {
         const token = localStorage.getItem('token');
-        await fetch(`/api/cart/${itemId}`, {
+        await fetch(`https://marketx-6vt2.onrender.com/api/cart/${itemId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
